@@ -57,6 +57,7 @@ key-decisions:
   - "BaseConsumer commits offset after DLQ send (not before) to guarantee at-least-once semantics even if DLQ write fails"
   - "AuditLog uses mapped_column('metadata', JSONB) with Python attribute metadata_ to avoid reserved word conflict"
   - "Alembic env.py uses sys.path.insert (not PYTHONPATH) for portability inside Docker container"
+  - "Kafka image switched from bitnami/kafka to apache/kafka:3.9.2 — bitnami removed from Docker Hub"
 
 # Metrics
 duration: ~3min
@@ -72,8 +73,8 @@ completed: 2026-03-02
 - **Duration:** ~3 min
 - **Started:** 2026-03-02T22:51:20Z
 - **Completed:** 2026-03-02T22:54:16Z
-- **Tasks:** 2 of 3 executed (Task 3 is a blocking human-verify checkpoint)
-- **Files modified:** 15
+- **Tasks:** 3 of 3 completed (Task 3 human-verify checkpoint: APPROVED — all 8 steps passed)
+- **Files modified:** 16
 
 ## Accomplishments
 
@@ -92,6 +93,9 @@ Each task was committed atomically:
 
 1. **Task 1: Kafka topic registry and base producer/consumer** - `9378523` (feat)
 2. **Task 2: SQLAlchemy ORM models and Alembic async migration** - `457f575` (feat)
+3. **Task 3: Verify complete Phase 1 infrastructure end-to-end** - human-verify checkpoint APPROVED (all 8 steps passed)
+
+**Deviation fix:** `1dd985a` — switch Kafka image from bitnami/kafka to apache/kafka:3.9.2 (bitnami removed from Docker Hub)
 
 **Plan metadata:** Committed with SUMMARY.md (docs)
 
@@ -112,6 +116,7 @@ Each task was committed atomically:
 - `backend/alembic/env.py` - Async env: sys.path fix, star import models, Base.metadata, settings.database_url override
 - `backend/alembic/script.py.mako` - Mako template for generated migration files
 - `backend/alembic/versions/.gitkeep` - Tracks empty versions directory in git
+- `docker-compose.yml` - Kafka image updated from bitnami/kafka to apache/kafka:3.9.2
 
 ## Decisions Made
 
@@ -138,20 +143,35 @@ Each task was committed atomically:
 - **Files modified:** `backend/alembic/env.py`
 - **Commit:** `457f575`
 
+**3. [Rule 1 - Bug] Switched Kafka Docker image from bitnami/kafka to apache/kafka:3.9.2**
+- **Found during:** Task 3 (end-to-end verification — `make up`)
+- **Issue:** bitnami/kafka image removed from Docker Hub; `docker compose up` failed to pull image
+- **Fix:** Updated docker-compose.yml Kafka service image to `apache/kafka:3.9.2` (official Apache Kafka image, KRaft mode)
+- **Files modified:** `docker-compose.yml`
+- **Verification:** `docker compose ps` showed all 4 services healthy; all 8 human verification steps passed
+- **Commit:** `1dd985a`
+
+---
+
+**Total deviations:** 3 auto-fixed (2 linting / Rule 1, 1 blocking infrastructure / Rule 1)
+**Impact on plan:** All auto-fixes necessary for correctness. Kafka image substitution is functionally transparent — same KRaft single-node behavior.
+
 ## Issues Encountered
 
 - Host system has Python 3.6.9 (not 3.11), so the plan's `python -c "from ride.kafka.topics import KafkaTopic..."` verification could not run on the host. AST-based structural verification was performed instead: file parsing, content assertions, and ruff linting. The code is Python 3.11 targeting Docker runtime and will work correctly there.
-- alembic binary not available on host (Python 3.6.9 environment). The `alembic init -t async alembic` command was replicated manually using the standard async template. The generated migration (`alembic revision --autogenerate -m "initial schema"`) will be run inside Docker when services are up (Task 3 human verification step).
+- alembic binary not available on host (Python 3.6.9 environment). The `alembic init -t async alembic` command was replicated manually using the standard async template. The generated migration (`alembic revision --autogenerate -m "initial schema"`) was run during Task 3 Docker verification via `make migrate`.
+- bitnami/kafka image removed from Docker Hub between plan creation and execution — resolved by switching to official Apache Kafka 3.9.2 image.
 
 ## Next Phase Readiness
 
-- Task 3 (human checkpoint) is pending: user must run `make up`, `make migrate`, `make topics` and verify all 8 steps
-- After checkpoint approval, Phase 2 workers can subclass BaseConsumer, import KafkaTopic, and define models without structural rework
-- Alembic migration will autogenerate the initial schema from all 5 registered models when run against the live PostgreSQL container
+- Full Phase 1 infrastructure verified end-to-end: Docker Compose, PostgreSQL (5 tables), Kafka (16 topics), FastAPI health endpoint
+- Phase 2 workers can immediately subclass BaseConsumer, import KafkaTopic, and define ORM models — no structural rework needed
+- Alembic migration baseline established; future schema changes use `alembic revision --autogenerate`
+- Blockers for Phase 2: Demo regulatory document must be selected; Claude structured output schema needs Workbench validation before writing extraction worker
 
 ## Self-Check: PASSED
 
-All 16 expected files found on disk. Both task commits verified in git history (9378523, 457f575).
+All 16 expected files found on disk. All task commits verified in git history (9378523, 457f575, 1dd985a). Task 3 human-verify checkpoint approved by user — all 8 end-to-end verification steps passed.
 
 ---
 *Phase: 01-foundation*

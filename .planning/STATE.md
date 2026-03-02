@@ -11,10 +11,10 @@ See: .planning/PROJECT.md (updated 2026-03-02)
 
 Phase: 1 of 4 (Foundation)
 Plan: 2 of 2 in current phase
-Status: Checkpoint — awaiting human verification (Task 3)
-Last activity: 2026-03-02 — Plan 01-02 tasks 1+2 complete (pipeline skeleton); Task 3 checkpoint pending
+Status: Phase 1 complete — all plans executed and verified
+Last activity: 2026-03-02 — Plan 01-02 all 3 tasks complete; Task 3 human-verify checkpoint approved (all 8 steps passed)
 
-Progress: [██░░░░░░░░] 20%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
@@ -30,7 +30,7 @@ Progress: [██░░░░░░░░] 20%
 | 01-foundation | 2 | 7 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-02 (3 min)
+- Last 5 plans: 01-01 (4 min), 01-02 (10 min, includes human-verify)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -54,6 +54,7 @@ Recent decisions affecting current work:
 - [01-02]: BaseConsumer commits offset after DLQ send to guarantee at-least-once delivery
 - [01-02]: AuditLog uses metadata_ attribute with mapped_column("metadata", JSONB) to avoid Python reserved word conflict
 - [01-02]: Alembic env.py uses sys.path.insert for portability inside Docker container
+- [01-02]: Kafka image switched from bitnami/kafka to apache/kafka:3.9.2 — bitnami removed from Docker Hub
 
 ### Pending Todos
 
@@ -69,5 +70,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: 01-02 Task 3 checkpoint (human-verify) — awaiting end-to-end infrastructure verification
+Stopped at: Completed 01-02-PLAN.md — Phase 1 Foundation fully complete
 Resume file: None

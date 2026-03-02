@@ -12,7 +12,7 @@ RIDE transforms financial regulatory documents into approved, system-mapped busi
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - PostgreSQL schema, Kafka backbone, FastAPI scaffold, and Docker Compose infrastructure
+- [x] **Phase 1: Foundation** - PostgreSQL schema, Kafka backbone, FastAPI scaffold, and Docker Compose infrastructure
 - [ ] **Phase 2: Ingestion and Extraction** - PDF upload, structure-preserving parsing, and AI obligation extraction with citations and reasoning
 - [ ] **Phase 3: Legal Gate, Action Items, and RAG Corpus** - Legal review gate, obligation-to-action-item transformation, and RAG system mapper with mock service corpus
 - [ ] **Phase 4: Engineering Gate, Impact Matrix, and Demo** - Engineering review gate, systems-x-obligations matrix, architecture diagrams, and demo-ready end-to-end flow
@@ -90,7 +90,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/2 | Complete (checkpoint pending) | 2026-03-02 |
+| 1. Foundation | 2/2 | Complete   | 2026-03-02 |
 | 2. Ingestion and Extraction | 0/2 | Not started | - |
 | 3. Legal Gate, Action Items, and RAG Corpus | 0/2 | Not started | - |
 | 4. Engineering Gate, Impact Matrix, and Demo | 0/2 | Not started | - |
