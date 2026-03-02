@@ -16,6 +16,8 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       CLUSTER_ID: "RIDEKafkaCluster001"
+    volumes:
+      - kafka_data:/tmp/kraft-combined-logs
     healthcheck:
       test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
       interval: 15s
@@ -70,5 +72,6 @@ services:
         condition: service_healthy
 
 volumes:
+  kafka_data:
   postgres_data:
   qdrant_data:
