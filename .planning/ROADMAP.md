@@ -45,11 +45,11 @@ Plans:
   3. Each extracted obligation has a verbatim source quote from the original document visible alongside the AI summary
   4. Each extracted obligation displays its chain-of-thought reasoning so the reviewer can see why the obligation was identified
   5. Obligations flagged as ambiguous are visually distinct from clear obligations in the UI
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: PDF ingestion worker and FastAPI upload endpoint
-- [ ] 02-02: AI extraction worker with Claude structured output schema
+- [ ] 02-01-PLAN.md — PDF upload endpoint, structure-preserving parse worker, Docker uploads volume, and FastAPI lifespan wiring
+- [ ] 02-02-PLAN.md — Pydantic extraction schema, Claude structured output extract worker, chunking with deduplication, and obligation persistence
 
 ### Phase 3: Legal Gate, Action Items, and RAG Corpus
 **Goal**: A legal reviewer can approve or reject obligations with full evidence displayed, approved obligations become structured action items, and the RAG system mapper has a working mock corpus ready for suggestions
