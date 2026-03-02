@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Project scaffold, Docker Compose infrastructure, FastAPI health endpoint
-- [ ] 01-02-PLAN.md — Kafka topic registry, base producer/consumer classes, SQLAlchemy models, Alembic migration
+- [x] 01-02-PLAN.md — Kafka topic registry, base producer/consumer classes, SQLAlchemy models, Alembic migration
 
 ### Phase 2: Ingestion and Extraction
 **Goal**: A regulatory PDF uploaded by the user produces structured obligations with verbatim source quotes, chain-of-thought reasoning, and ambiguity flags — visible in the database and ready for legal review
@@ -90,7 +90,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/2 | In progress | - |
+| 1. Foundation | 2/2 | Complete (checkpoint pending) | 2026-03-02 |
 | 2. Ingestion and Extraction | 0/2 | Not started | - |
 | 3. Legal Gate, Action Items, and RAG Corpus | 0/2 | Not started | - |
 | 4. Engineering Gate, Impact Matrix, and Demo | 0/2 | Not started | - |

@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-03-02)
 ## Current Position
 
 Phase: 1 of 4 (Foundation)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-03-02 — Plan 01-01 complete (infrastructure skeleton)
+Plan: 2 of 2 in current phase
+Status: Checkpoint — awaiting human verification (Task 3)
+Last activity: 2026-03-02 — Plan 01-02 tasks 1+2 complete (pipeline skeleton); Task 3 checkpoint pending
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 4 min
+- Total plans completed: 2
+- Average duration: 3.5 min
 - Total execution time: 0.1 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 1 | 4 min | 4 min |
+| 01-foundation | 2 | 7 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min)
-- Trend: —
+- Last 5 plans: 01-01 (4 min), 01-02 (3 min)
+- Trend: stable
 
 *Updated after each plan completion*
 
@@ -50,6 +50,10 @@ Recent decisions affecting current work:
 - [01-01]: Qdrant health check uses /dev/tcp bash workaround (no curl in official image)
 - [01-01]: CORS uses settings.cors_origins (not wildcard) to satisfy browser allow_credentials=True requirement
 - [01-01]: lifespan context manager used (not deprecated @app.on_event)
+- [01-02]: KafkaTopic StrEnum derives DLQ topic via KafkaTopic(str(primary) + ".dlq") — no separate lookup needed
+- [01-02]: BaseConsumer commits offset after DLQ send to guarantee at-least-once delivery
+- [01-02]: AuditLog uses metadata_ attribute with mapped_column("metadata", JSONB) to avoid Python reserved word conflict
+- [01-02]: Alembic env.py uses sys.path.insert for portability inside Docker container
 
 ### Pending Todos
 
@@ -65,5 +69,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Completed 01-01-PLAN.md — infrastructure skeleton done, ready for 01-02
+Stopped at: 01-02 Task 3 checkpoint (human-verify) — awaiting end-to-end infrastructure verification
 Resume file: None
