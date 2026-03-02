@@ -29,10 +29,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. PostgreSQL schema is created with tables for documents, obligations, action items, mappings, and audit log
   4. Kafka topics file is the single source of truth and all 8 topic names resolve without hardcoded strings in worker code
   5. A dead-letter queue pattern exists and producer/consumer base classes are importable by all workers
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Infrastructure, schema, and Kafka backbone
+- [ ] 01-01-PLAN.md — Project scaffold, Docker Compose infrastructure, FastAPI health endpoint
+- [ ] 01-02-PLAN.md — Kafka topic registry, base producer/consumer classes, SQLAlchemy models, Alembic migration
 
 ### Phase 2: Ingestion and Extraction
 **Goal**: A regulatory PDF uploaded by the user produces structured obligations with verbatim source quotes, chain-of-thought reasoning, and ambiguity flags — visible in the database and ready for legal review
@@ -89,7 +90,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/1 | Not started | - |
+| 1. Foundation | 0/2 | Planning complete | - |
 | 2. Ingestion and Extraction | 0/2 | Not started | - |
 | 3. Legal Gate, Action Items, and RAG Corpus | 0/2 | Not started | - |
 | 4. Engineering Gate, Impact Matrix, and Demo | 0/2 | Not started | - |
