@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-03-02)
 ## Current Position
 
 Phase: 1 of 4 (Foundation)
-Plan: 0 of 1 in current phase
-Status: Ready to plan
-Last activity: 2026-03-02 — Roadmap created, phases derived from requirements
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-03-02 — Plan 01-01 complete (infrastructure skeleton)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: 0 hours
+- Total plans completed: 1
+- Average duration: 4 min
+- Total execution time: 0.1 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-foundation | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: —
+- Last 5 plans: 01-01 (4 min)
 - Trend: —
 
 *Updated after each plan completion*
@@ -46,6 +46,10 @@ Recent decisions affecting current work:
 - [Research]: Commit to Claude structured output Pattern A (source_quote in schema) — structured output + Citations API cannot be combined (400 error)
 - [Research]: pymupdf4llm AGPL license is acceptable for closed-source portfolio prototype — flag in architecture docs
 - [Research]: Kafka in single-node KRaft mode (no Zookeeper) — reduces operational complexity for prototype
+- [01-01]: asyncpg pinned <0.30.0 due to SQLAlchemy async dialect incompatibility reports
+- [01-01]: Qdrant health check uses /dev/tcp bash workaround (no curl in official image)
+- [01-01]: CORS uses settings.cors_origins (not wildcard) to satisfy browser allow_credentials=True requirement
+- [01-01]: lifespan context manager used (not deprecated @app.on_event)
 
 ### Pending Todos
 
@@ -61,5 +65,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-02
-Stopped at: Roadmap created — ready to plan Phase 1
+Stopped at: Completed 01-01-PLAN.md — infrastructure skeleton done, ready for 01-02
 Resume file: None
