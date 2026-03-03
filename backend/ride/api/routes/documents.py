@@ -3,6 +3,7 @@ import uuid
 
 import aiofiles
 from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ride.config import settings
@@ -74,3 +75,47 @@ async def upload_document(
     )
 
     return {"document_id": str(doc_id), "status": "uploaded", "filename": file.filename}
+
+
+@router.get("/")
+async def list_documents(
+    db: AsyncSession = Depends(get_db),  # noqa: B008
+) -> list[dict]:
+    """List all documents ordered by upload date (newest first)."""
+    result = await db.execute(
+        select(Document).order_by(Document.uploaded_at.desc())
+    )
+    documents = result.scalars().all()
+    return [
+        {
+            "id": str(d.id),
+            "filename": d.filename,
+            "original_url": d.original_url,
+            "content_markdown": d.content_markdown,
+            "status": d.status,
+            "uploaded_at": d.uploaded_at.isoformat() if d.uploaded_at else None,
+            "updated_at": d.updated_at.isoformat() if d.updated_at else None,
+        }
+        for d in documents
+    ]
+
+
+@router.get("/{document_id}")
+async def get_document(
+    document_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db),  # noqa: B008
+) -> dict:
+    """Get a single document by ID."""
+    result = await db.execute(select(Document).where(Document.id == document_id))
+    doc = result.scalar_one_or_none()
+    if not doc:
+        raise HTTPException(status_code=404, detail="Document not found")
+    return {
+        "id": str(doc.id),
+        "filename": doc.filename,
+        "original_url": doc.original_url,
+        "content_markdown": doc.content_markdown,
+        "status": doc.status,
+        "uploaded_at": doc.uploaded_at.isoformat() if doc.uploaded_at else None,
+        "updated_at": doc.updated_at.isoformat() if doc.updated_at else None,
+    }

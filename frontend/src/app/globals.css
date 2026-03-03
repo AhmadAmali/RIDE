@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Wealthsimple-inspired palette: deep teal/navy + clean whites */
+    --background: 0 0% 99%;
+    --foreground: 210 40% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 12%;
+
+    /* Deep teal/navy primary */
+    --primary: 200 80% 15%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 15% 95%;
+    --secondary-foreground: 210 40% 12%;
+
+    --muted: 210 15% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 168 55% 40%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214 20% 90%;
+    --input: 214 20% 90%;
+    --ring: 200 80% 15%;
+
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 210 40% 6%;
+    --foreground: 0 0% 95%;
+
+    --card: 210 40% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 210 40% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 168 55% 50%;
+    --primary-foreground: 210 40% 6%;
+
+    --secondary: 210 30% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 210 30% 15%;
+    --muted-foreground: 215 16% 57%;
+
+    --accent: 168 55% 40%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 30% 18%;
+    --input: 210 30% 18%;
+    --ring: 168 55% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Wealthsimple-inspired prose overrides for document markdown */
+.prose-ride {
+  --tw-prose-headings: hsl(210 40% 12%);
+  --tw-prose-body: hsl(215 16% 35%);
+  --tw-prose-links: hsl(200 80% 15%);
+  --tw-prose-bold: hsl(210 40% 12%);
+  --tw-prose-quotes: hsl(215 16% 47%);
+  --tw-prose-quote-borders: hsl(200 80% 15% / 0.3);
+}
