@@ -17,6 +17,13 @@ class Settings(BaseSettings):
     api_host: str = "0.0.0.0"
     api_port: int = 8000
 
+    # File uploads
+    upload_dir: str = "/uploads"
+    max_upload_bytes: int = 50 * 1024 * 1024  # 50 MB
+
+    # Claude / Anthropic
+    anthropic_api_key: str = ""
+
 
 @lru_cache
 def get_settings() -> Settings:
