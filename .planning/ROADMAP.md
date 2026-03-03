@@ -13,7 +13,7 @@ RIDE transforms financial regulatory documents into approved, system-mapped busi
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - PostgreSQL schema, Kafka backbone, FastAPI scaffold, and Docker Compose infrastructure
-- [ ] **Phase 2: Ingestion and Extraction** - PDF upload, structure-preserving parsing, and AI obligation extraction with citations and reasoning
+- [x] **Phase 2: Ingestion and Extraction** - PDF upload, structure-preserving parsing, and AI obligation extraction with citations and reasoning
 - [ ] **Phase 3: Legal Gate, Action Items, and RAG Corpus** - Legal review gate, obligation-to-action-item transformation, and RAG system mapper with mock service corpus
 - [ ] **Phase 4: Engineering Gate, Impact Matrix, and Demo** - Engineering review gate, systems-x-obligations matrix, architecture diagrams, and demo-ready end-to-end flow
 
@@ -61,11 +61,11 @@ Plans:
   3. Approved obligations are automatically transformed into structured business action items with owner and deadline fields
   4. The RAG system mapper returns system suggestions for an action item using the mock Wealthsimple service corpus (KYC, Trading Engine, Tax Reporting, Compliance Reporting, Auth, Notifications)
   5. Mock service corpus is committed to the repository and indexed at startup — retrieval precision exceeds 80% on test obligation queries
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: Legal review gate API and UI
-- [ ] 03-02: Action item generation worker and RAG corpus + mapper
+- [ ] 03-01-PLAN.md — Legal review API with atomic audit logging, action item worker, RAG corpus + indexer, RAG mapper worker, and full lifespan wiring
+- [ ] 03-02-PLAN.md — Next.js 15 frontend with Wealthsimple-inspired design, document list page, and legal review split-panel UI with obligation cards
 
 ### Phase 4: Engineering Gate, Impact Matrix, and Demo
 **Goal**: Engineers can confirm or correct AI system suggestions with RAG evidence displayed, the final systems-x-obligations matrix reflects all confirmed mappings, architecture diagrams exist, and one polished end-to-end flow is demo-ready
