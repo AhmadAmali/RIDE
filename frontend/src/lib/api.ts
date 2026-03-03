@@ -1,4 +1,4 @@
-import { Document, Obligation } from "./types";
+import { ActionItem, Document, Obligation, SystemMapping } from "./types";
 
 // Server-side (SSR) uses Docker internal hostname; browser uses localhost
 const API_URL =
@@ -55,6 +55,64 @@ export async function reviewObligation(
   );
   if (res.status === 409) {
     throw new Error("This obligation has already been reviewed.");
+  }
+  if (!res.ok) {
+    throw new Error(`Review failed: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function fetchSystemMappings(
+  documentId: string
+): Promise<SystemMapping[]> {
+  const res = await fetch(
+    `${API_URL}/api/system-mappings?document_id=${documentId}`,
+    {
+      cache: "no-store",
+    }
+  );
+  if (!res.ok) {
+    throw new Error(`Failed to fetch system mappings: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function fetchActionItems(
+  documentId: string
+): Promise<ActionItem[]> {
+  const res = await fetch(
+    `${API_URL}/api/action-items?document_id=${documentId}`,
+    {
+      cache: "no-store",
+    }
+  );
+  if (!res.ok) {
+    throw new Error(`Failed to fetch action items: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function reviewSystemMapping(
+  mappingId: string,
+  action: "confirmed" | "corrected" | "reassigned",
+  correctedSystem?: string,
+  reason?: string
+): Promise<SystemMapping> {
+  const res = await fetch(
+    `${API_URL}/api/system-mappings/${mappingId}/review`,
+    {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action,
+        actor: "engineer",
+        corrected_system: correctedSystem,
+        reason,
+      }),
+    }
+  );
+  if (res.status === 409) {
+    throw new Error("This mapping has already been reviewed.");
   }
   if (!res.ok) {
     throw new Error(`Review failed: ${res.status}`);
