@@ -1,5 +1,7 @@
 # RIDE — Regulatory Integrated Development Environment
 
+[![Demo Video](https://img.youtube.com/vi/xiYua2B441I/maxresdefault.jpg)](https://youtu.be/xiYua2B441I)
+
 RIDE is an event-driven platform that ingests regulatory PDF documents, extracts legal obligations using AI, and maps them to internal engineering systems through a human-in-the-loop review pipeline.
 
 ## Architecture
