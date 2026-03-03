@@ -14,9 +14,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### AI Obligation Extraction
 
-- [ ] **EXTRACT-01**: System extracts structured obligations from regulatory document with verbatim source quotes
-- [ ] **EXTRACT-02**: System displays transparent chain-of-thought reasoning per extracted obligation
-- [ ] **EXTRACT-03**: System flags ambiguous regulatory language that requires human judgment
+- [x] **EXTRACT-01**: System extracts structured obligations from regulatory document with verbatim source quotes
+- [x] **EXTRACT-02**: System displays transparent chain-of-thought reasoning per extracted obligation
+- [x] **EXTRACT-03**: System flags ambiguous regulatory language that requires human judgment
 
 ### Legal Review Gate
 
@@ -97,9 +97,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | INGEST-01 | Phase 2 | Complete (02-01) |
 | INGEST-02 | Phase 2 | Complete (02-01) |
-| EXTRACT-01 | Phase 2 | Pending |
-| EXTRACT-02 | Phase 2 | Pending |
-| EXTRACT-03 | Phase 2 | Pending |
+| EXTRACT-01 | Phase 2 | Complete (02-02) |
+| EXTRACT-02 | Phase 2 | Complete (02-02) |
+| EXTRACT-03 | Phase 2 | Complete (02-02) |
 | LEGAL-01 | Phase 3 | Pending |
 | LEGAL-02 | Phase 3 | Pending |
 | ACTION-01 | Phase 3 | Pending |
@@ -118,4 +118,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-02*
-*Last updated: 2026-03-03 after 02-01 completion — INGEST-01, INGEST-02 marked complete*
+*Last updated: 2026-03-03 after 02-02 completion — EXTRACT-01, EXTRACT-02, EXTRACT-03 marked complete*

@@ -49,7 +49,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — PDF upload endpoint, structure-preserving parse worker, Docker uploads volume, and FastAPI lifespan wiring
-- [ ] 02-02-PLAN.md — Pydantic extraction schema, Claude structured output extract worker, chunking with deduplication, and obligation persistence
+- [x] 02-02-PLAN.md — Pydantic extraction schema, Claude structured output extract worker, chunking with deduplication, and obligation persistence
 
 ### Phase 3: Legal Gate, Action Items, and RAG Corpus
 **Goal**: A legal reviewer can approve or reject obligations with full evidence displayed, approved obligations become structured action items, and the RAG system mapper has a working mock corpus ready for suggestions
@@ -91,6 +91,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-02 |
-| 2. Ingestion and Extraction | 1/2 | In progress | - |
+| 2. Ingestion and Extraction | 2/2 | Complete | 2026-03-03 |
 | 3. Legal Gate, Action Items, and RAG Corpus | 0/2 | Not started | - |
 | 4. Engineering Gate, Impact Matrix, and Demo | 0/2 | Not started | - |

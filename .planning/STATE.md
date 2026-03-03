@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-last_updated: "2026-03-03T00:14:00.000Z"
+last_updated: "2026-03-03T00:18:00.000Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 8
-  completed_plans: 3
+  completed_plans: 4
 ---
 
 # Project State
@@ -23,11 +23,11 @@ See: .planning/PROJECT.md (updated 2026-03-02)
 ## Current Position
 
 Phase: 2 of 4 (Ingestion and Extraction)
-Plan: 1 of 3 in current phase
-Status: Plan 02-01 complete — upload endpoint and parse worker shipped
-Last activity: 2026-03-03 — Plan 02-01 all 2 tasks complete; upload endpoint and ParseWorker wired into lifespan
+Plan: 2 of 3 in current phase
+Status: Plan 02-02 complete — Claude extraction worker shipped; full ingestion pipeline wired
+Last activity: 2026-03-03 — Plan 02-02 all 2 tasks complete; ExtractWorker consuming DOCUMENT_PARSED, persisting obligations, emitting OBLIGATION_EXTRACTED
 
-Progress: [████░░░░░░] 40%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
@@ -41,10 +41,10 @@ Progress: [████░░░░░░] 40%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 7 min | 3.5 min |
-| 02-ingestion-and-extraction | 1 | 6 min | 6 min |
+| 02-ingestion-and-extraction | 2 | 11 min | 5.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-02 (10 min, includes human-verify), 02-01 (6 min)
+- Last 5 plans: 01-01 (4 min), 01-02 (10 min, includes human-verify), 02-01 (6 min), 02-02 (5 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -73,6 +73,9 @@ Recent decisions affecting current work:
 - [02-01]: asyncio.to_thread wraps pymupdf4llm.to_markdown — synchronous CPU-bound call; blocking event loop would stall all in-flight HTTP requests
 - [02-01]: File size guard counts actual bytes written, not Content-Length header — header is untrustworthy; streaming check is authoritative
 - [02-01]: uploads_data named Docker volume (not bind mount) — ensures API and parse worker share identical filesystem; persists across restarts
+- [02-02]: EXTRACTION_PROMPT stored as module-level constant in obligation.py alongside Pydantic models — all extraction contracts in one file used only by the extract worker
+- [02-02]: Deduplication uses source_quote containment check (substring in either direction) — simpler than Levenshtein while correctly handling overlapping chunk boundaries
+- [02-02]: claude_model configurable via Settings.claude_model (default: claude-sonnet-4-5) — model upgrades via env var without code change
 
 ### Pending Todos
 
@@ -88,5 +91,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: Completed 02-01-PLAN.md — upload endpoint, ParseWorker, and lifespan wiring complete
+Stopped at: Completed 02-02-PLAN.md — Claude extraction worker, ObligationItem schema, chunking helper, and lifespan wiring complete
 Resume file: None
