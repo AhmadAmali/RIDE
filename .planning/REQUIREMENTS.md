@@ -39,12 +39,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Impact Analysis
 
-- [ ] **IMPACT-01**: Final systems-x-obligations matrix shows confirmed mappings as the demo deliverable
+- [x] **IMPACT-01**: Final systems-x-obligations matrix shows confirmed mappings as the demo deliverable
 
 ### Architecture & Demo
 
-- [ ] **ARCH-01**: Architecture diagrams demonstrate systems thinking and event-driven pipeline design
-- [ ] **ARCH-02**: One polished end-to-end happy path flow suitable for 2-3 minute demo video
+- [x] **ARCH-01**: Architecture diagrams demonstrate systems thinking and event-driven pipeline design
+- [x] **ARCH-02**: One polished end-to-end happy path flow suitable for 2-3 minute demo video
 
 ## v2 Requirements
 
@@ -107,9 +107,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RAG-02 | Phase 3 | Complete |
 | ENG-01 | Phase 4 | Complete (04-01) |
 | ENG-02 | Phase 4 | Complete (04-01) |
-| IMPACT-01 | Phase 4 | Pending |
-| ARCH-01 | Phase 4 | Pending |
-| ARCH-02 | Phase 4 | Pending |
+| IMPACT-01 | Phase 4 | Complete (04-02) |
+| ARCH-01 | Phase 4 | Complete (04-02) |
+| ARCH-02 | Phase 4 | Complete (04-02) |
 
 **Coverage:**
 - v1 requirements: 15 total
@@ -118,4 +118,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-02*
-*Last updated: 2026-03-03 after 04-01 completion — ENG-01, ENG-02 marked complete*
+*Last updated: 2026-03-03 after 04-02 completion — IMPACT-01, ARCH-01, ARCH-02 marked complete. All v1 requirements complete.*
