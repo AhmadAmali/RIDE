@@ -43,3 +43,18 @@ export interface SystemMapping {
   reviewed_at: string | null;
   action_item_description: string | null;
 }
+
+export interface ImpactMatrixCell {
+  system_name: string;
+  obligation_id: string;
+  obligation_text: string;
+  confidence_score: number | null;
+  suggested_by: string;
+  engineer_note: string | null;
+}
+
+export interface ImpactMatrixData {
+  systems: string[];
+  obligations: { id: string; text: string }[];
+  cells: ImpactMatrixCell[];
+}

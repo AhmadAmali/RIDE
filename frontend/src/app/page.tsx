@@ -66,12 +66,22 @@ export default async function DocumentListPage() {
       {/* Header */}
       <header className="border-b bg-card">
         <div className="mx-auto max-w-5xl px-6 py-8">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">
-            RIDE
-          </h1>
-          <p className="mt-2 text-base text-muted-foreground">
-            Regulatory Integrated Development Environment
-          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-foreground">
+                RIDE
+              </h1>
+              <p className="mt-2 text-base text-muted-foreground">
+                Regulatory Integrated Development Environment
+              </p>
+            </div>
+            <Link
+              href="/impact"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
+            >
+              View Impact Matrix &rarr;
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -103,42 +113,53 @@ export default async function DocumentListPage() {
         <div className="grid gap-4">
           {documents.map((doc) => {
             const isReviewable = doc.status === "extracted";
-            const CardWrapper = isReviewable ? Link : "div";
-            const wrapperProps = isReviewable
-              ? { href: `/review/${doc.id}` }
-              : {};
 
             return (
-              <CardWrapper key={doc.id} {...(wrapperProps as Record<string, string>)}>
-                <Card
-                  className={`transition-all ${
-                    isReviewable
-                      ? "cursor-pointer hover:shadow-md hover:border-primary/20"
-                      : "opacity-70"
-                  }`}
-                >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="min-w-0 flex-1">
-                        <CardTitle className="truncate text-base">
-                          {doc.filename}
-                        </CardTitle>
-                        <CardDescription className="mt-1">
-                          {formatDate(doc.uploaded_at)}
-                        </CardDescription>
-                      </div>
-                      <StatusBadge status={doc.status} />
+              <Card
+                key={doc.id}
+                className={`transition-all ${
+                  isReviewable
+                    ? "hover:shadow-md hover:border-primary/20"
+                    : "opacity-70"
+                }`}
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                      <CardTitle className="truncate text-base">
+                        {doc.filename}
+                      </CardTitle>
+                      <CardDescription className="mt-1">
+                        {formatDate(doc.uploaded_at)}
+                      </CardDescription>
                     </div>
-                  </CardHeader>
-                  {isReviewable && (
-                    <CardContent>
-                      <p className="text-sm text-primary font-medium">
-                        Click to review obligations &rarr;
-                      </p>
-                    </CardContent>
-                  )}
-                </Card>
-              </CardWrapper>
+                    <StatusBadge status={doc.status} />
+                  </div>
+                </CardHeader>
+                {isReviewable && (
+                  <CardContent>
+                    <div className="flex flex-col gap-2">
+                      <Link
+                        href={`/review/${doc.id}`}
+                        className="text-sm text-primary font-medium hover:text-primary/80 transition-colors"
+                      >
+                        Legal Review &rarr;
+                      </Link>
+                      <Link
+                        href={`/engineering/${doc.id}`}
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 hover:text-teal-600 transition-colors"
+                      >
+                        <Badge
+                          variant="outline"
+                          className="bg-teal-50 text-teal-700 border-teal-200 text-xs"
+                        >
+                          Engineering Review
+                        </Badge>
+                      </Link>
+                    </div>
+                  </CardContent>
+                )}
+              </Card>
             );
           })}
         </div>

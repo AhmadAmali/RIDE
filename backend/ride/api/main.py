@@ -7,6 +7,7 @@ from qdrant_client import AsyncQdrantClient
 
 from ride.api.routes.documents import router as documents_router
 from ride.api.routes.obligations import router as obligations_router
+from ride.api.routes.impact_matrix import router as impact_matrix_router
 from ride.api.routes.system_mappings import action_items_router, router as system_mappings_router
 from ride.config import settings
 from ride.db.session import engine
@@ -99,6 +100,7 @@ app.include_router(documents_router)
 app.include_router(obligations_router)
 app.include_router(system_mappings_router)
 app.include_router(action_items_router)
+app.include_router(impact_matrix_router)
 
 
 @app.get("/health")

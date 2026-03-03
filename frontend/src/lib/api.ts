@@ -1,4 +1,4 @@
-import { ActionItem, Document, Obligation, SystemMapping } from "./types";
+import { ActionItem, Document, ImpactMatrixData, Obligation, SystemMapping } from "./types";
 
 // Server-side (SSR) uses Docker internal hostname; browser uses localhost
 const API_URL =
@@ -116,6 +116,19 @@ export async function reviewSystemMapping(
   }
   if (!res.ok) {
     throw new Error(`Review failed: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function fetchImpactMatrix(
+  documentId?: string
+): Promise<ImpactMatrixData> {
+  const params = documentId ? `?document_id=${documentId}` : "";
+  const res = await fetch(`${API_URL}/api/impact-matrix${params}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch impact matrix: ${res.status}`);
   }
   return res.json();
 }
