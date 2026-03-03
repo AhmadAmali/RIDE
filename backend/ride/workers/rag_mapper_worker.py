@@ -89,6 +89,7 @@ class RagMapperWorker(BaseConsumer):
                         confidence_score=result.score,
                         suggested_by="rag",
                         confirmed=False,
+                        matched_chunk=result.document,
                     )
                     session.add(mapping)
                 await session.commit()

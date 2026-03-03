@@ -7,6 +7,7 @@ from qdrant_client import AsyncQdrantClient
 
 from ride.api.routes.documents import router as documents_router
 from ride.api.routes.obligations import router as obligations_router
+from ride.api.routes.system_mappings import action_items_router, router as system_mappings_router
 from ride.config import settings
 from ride.db.session import engine
 from ride.kafka.producer import BaseProducer
@@ -96,6 +97,8 @@ app.add_middleware(
 # Routers
 app.include_router(documents_router)
 app.include_router(obligations_router)
+app.include_router(system_mappings_router)
+app.include_router(action_items_router)
 
 
 @app.get("/health")
