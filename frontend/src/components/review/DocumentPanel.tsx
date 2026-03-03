@@ -10,7 +10,7 @@ export function DocumentPanel({ markdown }: DocumentPanelProps) {
     <ScrollArea className="h-full">
       <div className="p-8">
         <ReactMarkdown
-          className="prose prose-slate max-w-none prose-ride
+          className="prose prose-invert max-w-none prose-ride
             prose-headings:text-foreground prose-headings:font-semibold
             prose-p:text-muted-foreground prose-p:leading-7
             prose-strong:text-foreground

@@ -40,10 +40,7 @@ async def index_corpus(client: AsyncQdrantClient, corpus_dir: str) -> None:
 
     logger.info("Indexing corpus from '%s' into collection '%s'", corpus_dir, COLLECTION_NAME)
 
-    # Set fastembed model before creating collection
-    client.set_model(EMBEDDING_MODEL)
-
-    # Create collection using fastembed vector params
+    # Create collection using fastembed vector params (model already set by lifespan)
     await client.create_collection(
         collection_name=COLLECTION_NAME,
         vectors_config=client.get_fastembed_vector_params(),

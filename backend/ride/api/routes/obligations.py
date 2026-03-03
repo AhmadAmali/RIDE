@@ -109,18 +109,19 @@ async def review_obligation(
                     metadata_={"previous_status": "pending"},
                 )
             )
-        # Transaction committed here — safe to snapshot values for response and Kafka
 
-        obligation_snapshot = {
-            "id": str(obligation.id),
-            "document_id": str(obligation.document_id),
-            "text": obligation.text,
-            "source_quote": obligation.source_quote,
-            "reasoning": obligation.reasoning,
-            "status": obligation.status,
-            "is_ambiguous": obligation.is_ambiguous,
-            "created_at": obligation.created_at.isoformat() if obligation.created_at else None,
-        }
+            # Build snapshot BEFORE commit expires ORM attributes
+            obligation_snapshot = {
+                "id": str(obligation.id),
+                "document_id": str(obligation.document_id),
+                "text": obligation.text,
+                "source_quote": obligation.source_quote,
+                "reasoning": obligation.reasoning,
+                "status": obligation.status,
+                "is_ambiguous": obligation.is_ambiguous,
+                "created_at": obligation.created_at.isoformat() if obligation.created_at else None,
+            }
+        # Transaction committed here
 
     # Emit Kafka event AFTER transaction commits — only for approved actions
     if body.action == "approved":

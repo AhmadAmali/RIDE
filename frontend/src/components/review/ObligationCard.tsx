@@ -60,17 +60,17 @@ export function ObligationCard({
           </CardTitle>
           <div className="flex shrink-0 items-center gap-2">
             {obligation.is_ambiguous && (
-              <Badge className="bg-amber-100 text-amber-800 border-amber-200 hover:bg-amber-100">
+              <Badge className="bg-status-warning-muted text-status-warning-foreground border-status-warning/30 hover:bg-status-warning-muted">
                 Ambiguous
               </Badge>
             )}
             {isApproved && (
-              <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 hover:bg-emerald-100">
+              <Badge className="bg-status-success-muted text-status-success-foreground border-status-success/30 hover:bg-status-success-muted">
                 Approved
               </Badge>
             )}
             {isRejected && (
-              <Badge className="bg-red-100 text-red-800 border-red-200 hover:bg-red-100">
+              <Badge className="bg-status-danger-muted text-status-danger-foreground border-status-danger/30 hover:bg-status-danger-muted">
                 Rejected
               </Badge>
             )}
@@ -84,7 +84,7 @@ export function ObligationCard({
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Source Quote
           </p>
-          <blockquote className="bg-slate-50 border-l-4 border-primary/30 pl-4 py-3 pr-3 rounded-r-md">
+          <blockquote className="bg-muted/50 border-l-4 border-primary/40 pl-4 py-3 pr-3 rounded-r-md">
             <p className="text-sm text-foreground/80 italic leading-relaxed">
               &ldquo;{obligation.source_quote}&rdquo;
             </p>
@@ -115,7 +115,7 @@ export function ObligationCard({
           <Button
             onClick={() => handleAction("approved")}
             disabled={loading !== null}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium h-11"
+            className="flex-1 bg-status-success hover:bg-status-success/80 text-white font-medium h-11 shadow-sm hover:shadow-md hover:shadow-status-success/20"
             size="lg"
           >
             {loading === "approved" ? (
@@ -131,7 +131,7 @@ export function ObligationCard({
             onClick={() => handleAction("rejected")}
             disabled={loading !== null}
             variant="destructive"
-            className="flex-1 font-medium h-11"
+            className="flex-1 font-medium h-11 shadow-sm hover:shadow-md hover:shadow-destructive/20"
             size="lg"
           >
             {loading === "rejected" ? (

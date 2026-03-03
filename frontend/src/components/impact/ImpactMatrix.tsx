@@ -16,13 +16,13 @@ function truncateText(text: string, maxLen: number = 60): string {
 
 function CellContent({ cell }: { cell: ImpactMatrixCell | undefined }) {
   if (!cell) {
-    return <div className="w-full h-full bg-slate-50" />;
+    return <div className="w-full h-full bg-muted/30" />;
   }
 
   const isEngineerCorrected = cell.suggested_by === "engineer";
   const bgClass = isEngineerCorrected
-    ? "bg-amber-50 border-amber-200"
-    : "bg-teal-50 border-teal-200";
+    ? "bg-status-warning-muted border-status-warning/30"
+    : "bg-status-teal-muted border-status-teal/30";
 
   const confidence = cell.confidence_score
     ? `${Math.round(cell.confidence_score * 100)}%`
@@ -33,14 +33,14 @@ function CellContent({ cell }: { cell: ImpactMatrixCell | undefined }) {
       className={`w-full h-full flex flex-col items-center justify-center gap-0.5 px-1 py-1.5 ${bgClass} border rounded`}
       title={`System: ${formatSystemName(cell.system_name)}\nObligation: ${cell.obligation_text}\nConfidence: ${confidence ?? "N/A"}\nSource: ${cell.suggested_by}${cell.engineer_note ? `\nNote: ${cell.engineer_note}` : ""}`}
     >
-      <span className={`text-sm font-medium ${isEngineerCorrected ? "text-amber-700" : "text-teal-700"}`}>
+      <span className={`text-sm font-medium ${isEngineerCorrected ? "text-status-warning-foreground" : "text-status-teal-foreground"}`}>
         {isEngineerCorrected ? "\u2713\u270E" : "\u2713"}
       </span>
       {confidence && (
         <span className="text-[10px] text-muted-foreground">{confidence}</span>
       )}
       {cell.engineer_note && (
-        <span className="text-[10px] text-amber-500" title={cell.engineer_note}>
+        <span className="text-[10px] text-status-warning-foreground" title={cell.engineer_note}>
           *
         </span>
       )}

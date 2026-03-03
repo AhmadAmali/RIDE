@@ -43,6 +43,38 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        status: {
+          success: {
+            DEFAULT: "hsl(var(--status-success))",
+            muted: "hsl(var(--status-success-muted))",
+            foreground: "hsl(var(--status-success-foreground))",
+          },
+          warning: {
+            DEFAULT: "hsl(var(--status-warning))",
+            muted: "hsl(var(--status-warning-muted))",
+            foreground: "hsl(var(--status-warning-foreground))",
+          },
+          danger: {
+            DEFAULT: "hsl(var(--status-danger))",
+            muted: "hsl(var(--status-danger-muted))",
+            foreground: "hsl(var(--status-danger-foreground))",
+          },
+          info: {
+            DEFAULT: "hsl(var(--status-info))",
+            muted: "hsl(var(--status-info-muted))",
+            foreground: "hsl(var(--status-info-foreground))",
+          },
+          teal: {
+            DEFAULT: "hsl(var(--status-teal))",
+            muted: "hsl(var(--status-teal-muted))",
+            foreground: "hsl(var(--status-teal-foreground))",
+          },
+          neutral: {
+            DEFAULT: "hsl(var(--status-neutral))",
+            muted: "hsl(var(--status-neutral-muted))",
+            foreground: "hsl(var(--status-neutral-foreground))",
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

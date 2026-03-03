@@ -6,6 +6,8 @@ export interface Document {
   status: "uploaded" | "parsed" | "extracted";
   uploaded_at: string;
   updated_at: string;
+  obligation_count?: number;
+  approved_count?: number;
 }
 
 export interface Obligation {

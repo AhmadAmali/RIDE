@@ -28,7 +28,7 @@ export default function ImpactMatrixPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card">
+      <header className="header-gradient">
         <div className="mx-auto max-w-7xl px-6 py-8">
           <div className="flex items-center justify-between">
             <div>

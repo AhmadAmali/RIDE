@@ -84,7 +84,7 @@ export default function ReviewPage() {
   return (
     <div className="flex h-screen flex-col bg-background">
       {/* Header bar */}
-      <header className="flex h-16 shrink-0 items-center justify-between border-b bg-card px-6">
+      <header className="flex h-16 shrink-0 items-center justify-between header-gradient px-6">
         <div className="flex items-center gap-4">
           <Link
             href="/"
@@ -108,8 +108,8 @@ export default function ReviewPage() {
             variant="outline"
             className={
               reviewedCount === totalCount && totalCount > 0
-                ? "bg-emerald-100 text-emerald-700 border-emerald-200"
-                : "bg-slate-100 text-slate-600 border-slate-200"
+                ? "bg-status-success-muted text-status-success-foreground border-status-success/30"
+                : "bg-status-neutral-muted text-status-neutral-foreground border-status-neutral/30"
             }
           >
             {totalCount > 0

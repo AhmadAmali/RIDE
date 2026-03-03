@@ -4,7 +4,66 @@
 
 @layer base {
   :root {
-    /* Wealthsimple-inspired palette: deep teal/navy + clean whites */
+    /* Dark + Vibrant palette — inspired by Linear / Vercel / Arc */
+    --background: 220 20% 6%;
+    --foreground: 210 15% 90%;
+
+    --card: 220 20% 9%;
+    --card-foreground: 210 15% 90%;
+
+    --popover: 220 20% 9%;
+    --popover-foreground: 210 15% 90%;
+
+    /* Vibrant teal primary */
+    --primary: 168 75% 42%;
+    --primary-foreground: 220 20% 6%;
+
+    --secondary: 220 20% 14%;
+    --secondary-foreground: 210 15% 90%;
+
+    --muted: 220 20% 14%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 168 60% 38%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 20% 16%;
+    --input: 220 20% 16%;
+    --ring: 168 75% 42%;
+
+    --radius: 0.625rem;
+
+    /* Status color tokens */
+    --status-success: 160 70% 42%;
+    --status-success-muted: 160 40% 13%;
+    --status-success-foreground: 160 70% 65%;
+
+    --status-warning: 38 90% 50%;
+    --status-warning-muted: 38 50% 13%;
+    --status-warning-foreground: 38 90% 65%;
+
+    --status-danger: 0 72% 55%;
+    --status-danger-muted: 0 40% 14%;
+    --status-danger-foreground: 0 72% 68%;
+
+    --status-info: 215 80% 55%;
+    --status-info-muted: 215 40% 14%;
+    --status-info-foreground: 215 80% 68%;
+
+    --status-teal: 168 75% 42%;
+    --status-teal-muted: 168 40% 13%;
+    --status-teal-foreground: 168 75% 65%;
+
+    --status-neutral: 220 15% 40%;
+    --status-neutral-muted: 220 15% 14%;
+    --status-neutral-foreground: 220 15% 60%;
+  }
+
+  /* Optional light mode override */
+  .light {
     --background: 0 0% 99%;
     --foreground: 210 40% 12%;
 
@@ -14,7 +73,6 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 40% 12%;
 
-    /* Deep teal/navy primary */
     --primary: 200 80% 15%;
     --primary-foreground: 0 0% 98%;
 
@@ -34,37 +92,29 @@
     --input: 214 20% 90%;
     --ring: 200 80% 15%;
 
-    --radius: 0.625rem;
-  }
+    --status-success: 160 70% 38%;
+    --status-success-muted: 160 40% 92%;
+    --status-success-foreground: 160 70% 28%;
 
-  .dark {
-    --background: 210 40% 6%;
-    --foreground: 0 0% 95%;
+    --status-warning: 38 90% 45%;
+    --status-warning-muted: 38 50% 92%;
+    --status-warning-foreground: 38 90% 30%;
 
-    --card: 210 40% 8%;
-    --card-foreground: 0 0% 95%;
+    --status-danger: 0 72% 50%;
+    --status-danger-muted: 0 40% 94%;
+    --status-danger-foreground: 0 72% 35%;
 
-    --popover: 210 40% 8%;
-    --popover-foreground: 0 0% 95%;
+    --status-info: 215 80% 50%;
+    --status-info-muted: 215 40% 93%;
+    --status-info-foreground: 215 80% 35%;
 
-    --primary: 168 55% 50%;
-    --primary-foreground: 210 40% 6%;
+    --status-teal: 168 75% 38%;
+    --status-teal-muted: 168 40% 92%;
+    --status-teal-foreground: 168 75% 28%;
 
-    --secondary: 210 30% 15%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 210 30% 15%;
-    --muted-foreground: 215 16% 57%;
-
-    --accent: 168 55% 40%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 210 30% 18%;
-    --input: 210 30% 18%;
-    --ring: 168 55% 50%;
+    --status-neutral: 220 15% 55%;
+    --status-neutral-muted: 220 15% 94%;
+    --status-neutral-foreground: 220 15% 35%;
   }
 }
 
@@ -80,12 +130,35 @@
   }
 }
 
-/* Wealthsimple-inspired prose overrides for document markdown */
+/* Header gradient — subtle dark gradient with bottom border glow */
+.header-gradient {
+  background: linear-gradient(
+    180deg,
+    hsl(220 20% 10%) 0%,
+    hsl(220 20% 7%) 100%
+  );
+  border-bottom: 1px solid hsl(168 75% 42% / 0.15);
+  box-shadow: 0 1px 12px hsl(168 75% 42% / 0.06);
+}
+
+/* Card glow — teal border tint + box-shadow on hover */
+.card-glow {
+  border-color: hsl(168 75% 42% / 0.08);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card-glow:hover {
+  border-color: hsl(168 75% 42% / 0.25);
+  box-shadow:
+    0 0 0 1px hsl(168 75% 42% / 0.1),
+    0 4px 20px hsl(168 75% 42% / 0.08);
+}
+
+/* Dark-mode prose overrides for document markdown */
 .prose-ride {
-  --tw-prose-headings: hsl(210 40% 12%);
-  --tw-prose-body: hsl(215 16% 35%);
-  --tw-prose-links: hsl(200 80% 15%);
-  --tw-prose-bold: hsl(210 40% 12%);
-  --tw-prose-quotes: hsl(215 16% 47%);
-  --tw-prose-quote-borders: hsl(200 80% 15% / 0.3);
+  --tw-prose-headings: hsl(210 15% 90%);
+  --tw-prose-body: hsl(215 15% 65%);
+  --tw-prose-links: hsl(168 75% 55%);
+  --tw-prose-bold: hsl(210 15% 90%);
+  --tw-prose-quotes: hsl(215 15% 55%);
+  --tw-prose-quote-borders: hsl(168 75% 42% / 0.3);
 }

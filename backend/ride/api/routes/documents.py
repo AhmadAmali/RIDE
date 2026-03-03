@@ -3,13 +3,14 @@ import uuid
 
 import aiofiles
 from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile
-from sqlalchemy import select
+from sqlalchemy import case, func, outerjoin, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ride.config import settings
 from ride.db.session import get_db
 from ride.kafka.topics import KafkaTopic
 from ride.models.document import Document
+from ride.models.obligation import Obligation
 
 router = APIRouter(prefix="/api/documents", tags=["documents"])
 
@@ -81,11 +82,27 @@ async def upload_document(
 async def list_documents(
     db: AsyncSession = Depends(get_db),  # noqa: B008
 ) -> list[dict]:
-    """List all documents ordered by upload date (newest first)."""
-    result = await db.execute(
-        select(Document).order_by(Document.uploaded_at.desc())
+    """List all documents ordered by upload date (newest first).
+
+    Includes obligation_count and approved_count so the frontend can gate
+    the Engineering Review button on legal review completion.
+    """
+    approved_count = func.count(
+        case((Obligation.status == "approved", Obligation.id))
     )
-    documents = result.scalars().all()
+    obligation_count = func.count(Obligation.id)
+
+    result = await db.execute(
+        select(
+            Document,
+            obligation_count.label("obligation_count"),
+            approved_count.label("approved_count"),
+        )
+        .outerjoin(Obligation, Obligation.document_id == Document.id)
+        .group_by(Document.id)
+        .order_by(Document.uploaded_at.desc())
+    )
+    rows = result.all()
     return [
         {
             "id": str(d.id),
@@ -95,8 +112,10 @@ async def list_documents(
             "status": d.status,
             "uploaded_at": d.uploaded_at.isoformat() if d.uploaded_at else None,
             "updated_at": d.updated_at.isoformat() if d.updated_at else None,
+            "obligation_count": ob_count,
+            "approved_count": ap_count,
         }
-        for d in documents
+        for d, ob_count, ap_count in rows
     ]
 
 

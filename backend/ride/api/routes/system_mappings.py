@@ -156,20 +156,21 @@ async def review_system_mapping(
                     metadata_=audit_metadata,
                 )
             )
-        # Transaction committed here
 
-        mapping_snapshot = {
-            "id": str(mapping.id),
-            "action_item_id": str(mapping.action_item_id),
-            "system_name": mapping.system_name,
-            "confidence_score": mapping.confidence_score,
-            "matched_chunk": mapping.matched_chunk,
-            "suggested_by": mapping.suggested_by,
-            "confirmed": mapping.confirmed,
-            "engineer_note": mapping.engineer_note,
-            "created_at": mapping.created_at.isoformat() if mapping.created_at else None,
-            "reviewed_at": mapping.reviewed_at.isoformat() if mapping.reviewed_at else None,
-        }
+            # Build snapshot BEFORE commit expires ORM attributes
+            mapping_snapshot = {
+                "id": str(mapping.id),
+                "action_item_id": str(mapping.action_item_id),
+                "system_name": mapping.system_name,
+                "confidence_score": mapping.confidence_score,
+                "matched_chunk": mapping.matched_chunk,
+                "suggested_by": mapping.suggested_by,
+                "confirmed": mapping.confirmed,
+                "engineer_note": mapping.engineer_note,
+                "created_at": mapping.created_at.isoformat() if mapping.created_at else None,
+                "reviewed_at": None,  # func.now() is server-side; not yet available
+            }
+        # Transaction committed here
 
     # Emit Kafka event AFTER transaction commits
     await request.app.state.kafka_producer.send(

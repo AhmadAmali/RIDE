@@ -105,7 +105,7 @@ export function SystemMappingCard({
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-3">
           <CardTitle className="text-base leading-snug flex items-center gap-2">
-            <Badge className="bg-teal-100 text-teal-800 border-teal-200 hover:bg-teal-100 shrink-0">
+            <Badge className="bg-status-teal-muted text-status-teal-foreground border-status-teal/30 hover:bg-status-teal-muted shrink-0">
               {mapping.system_name}
             </Badge>
             {mapping.confidence_score !== null && (
@@ -119,8 +119,8 @@ export function SystemMappingCard({
               variant="outline"
               className={
                 mapping.suggested_by === "engineer"
-                  ? "bg-blue-50 text-blue-700 border-blue-200"
-                  : "bg-slate-50 text-slate-600 border-slate-200"
+                  ? "bg-status-info-muted text-status-info-foreground border-status-info/30"
+                  : "bg-status-neutral-muted text-status-neutral-foreground border-status-neutral/30"
               }
             >
               {mapping.suggested_by === "engineer"
@@ -128,17 +128,17 @@ export function SystemMappingCard({
                 : "AI Suggested"}
             </Badge>
             {isConfirmed && reviewAction === "Confirmed" && (
-              <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 hover:bg-emerald-100">
+              <Badge className="bg-status-success-muted text-status-success-foreground border-status-success/30 hover:bg-status-success-muted">
                 Confirmed
               </Badge>
             )}
             {isConfirmed && reviewAction === "Corrected" && (
-              <Badge className="bg-amber-100 text-amber-800 border-amber-200 hover:bg-amber-100">
+              <Badge className="bg-status-warning-muted text-status-warning-foreground border-status-warning/30 hover:bg-status-warning-muted">
                 Corrected
               </Badge>
             )}
             {isConfirmed && reviewAction === "Reassigned" && (
-              <Badge className="bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-100">
+              <Badge className="bg-status-info-muted text-status-info-foreground border-status-info/30 hover:bg-status-info-muted">
                 Reassigned
               </Badge>
             )}
@@ -165,7 +165,7 @@ export function SystemMappingCard({
             RAG Evidence &mdash; Why this system was suggested
           </p>
           {mapping.matched_chunk ? (
-            <blockquote className="bg-slate-50 border-l-4 border-primary/30 pl-4 py-3 pr-3 rounded-r-md">
+            <blockquote className="bg-muted/50 border-l-4 border-primary/40 pl-4 py-3 pr-3 rounded-r-md">
               <p className="text-sm text-foreground/80 italic leading-relaxed">
                 &ldquo;{mapping.matched_chunk}&rdquo;
               </p>
@@ -194,7 +194,7 @@ export function SystemMappingCard({
 
         {/* Inline correction form */}
         {!isConfirmed && formMode !== "buttons" && (
-          <div className="rounded-lg border bg-slate-50/50 p-4 space-y-3">
+          <div className="rounded-lg border bg-muted/50 p-4 space-y-3">
             <p className="text-sm font-medium text-foreground">
               {formMode === "correct"
                 ? "Correct System Assignment"
@@ -244,8 +244,8 @@ export function SystemMappingCard({
                 }
                 className={`flex-1 font-medium ${
                   formMode === "correct"
-                    ? "bg-amber-600 hover:bg-amber-700 text-white"
-                    : "bg-blue-600 hover:bg-blue-700 text-white"
+                    ? "bg-status-warning hover:bg-status-warning/80 text-white"
+                    : "bg-status-info hover:bg-status-info/80 text-white"
                 }`}
               >
                 {loading ? (
@@ -275,7 +275,7 @@ export function SystemMappingCard({
           <Button
             onClick={handleConfirm}
             disabled={loading !== null}
-            className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium h-11"
+            className="flex-1 bg-status-success hover:bg-status-success/80 text-white font-medium h-11 shadow-sm hover:shadow-md hover:shadow-status-success/20"
             size="lg"
           >
             {loading === "confirmed" ? (
@@ -291,7 +291,7 @@ export function SystemMappingCard({
             onClick={() => setFormMode("correct")}
             disabled={loading !== null}
             variant="outline"
-            className="flex-1 border-amber-300 text-amber-700 hover:bg-amber-50 font-medium h-11"
+            className="flex-1 border-status-warning/40 text-status-warning-foreground hover:bg-status-warning-muted font-medium h-11"
             size="lg"
           >
             Correct System
@@ -300,7 +300,7 @@ export function SystemMappingCard({
             onClick={() => setFormMode("reassign")}
             disabled={loading !== null}
             variant="outline"
-            className="flex-1 border-blue-300 text-blue-700 hover:bg-blue-50 font-medium h-11"
+            className="flex-1 border-status-info/40 text-status-info-foreground hover:bg-status-info-muted font-medium h-11"
             size="lg"
           >
             Reassign

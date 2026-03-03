@@ -12,7 +12,7 @@ from ride.api.routes.system_mappings import action_items_router, router as syste
 from ride.config import settings
 from ride.db.session import engine
 from ride.kafka.producer import BaseProducer
-from ride.rag.corpus_indexer import index_corpus
+from ride.rag.corpus_indexer import EMBEDDING_MODEL, index_corpus
 from ride.workers.action_item_worker import ActionItemWorker
 from ride.workers.extract_worker import ExtractWorker
 from ride.workers.parse_worker import ParseWorker
@@ -30,6 +30,7 @@ async def lifespan(app: FastAPI):
 
     # 2. Qdrant client — shared between corpus indexer and RAG mapper worker
     qdrant_client = AsyncQdrantClient(url=settings.qdrant_url)
+    qdrant_client.set_model(EMBEDDING_MODEL)
     app.state.qdrant_client = qdrant_client
 
     # 3. Index corpus at startup (idempotent — skips if collection already exists)

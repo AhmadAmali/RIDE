@@ -57,8 +57,8 @@ export function EngineeringPanel({
                           variant="outline"
                           className={
                             item.status === "pending"
-                              ? "bg-slate-50 text-slate-600 border-slate-200"
-                              : "bg-emerald-50 text-emerald-700 border-emerald-200"
+                              ? "bg-status-neutral-muted text-status-neutral-foreground border-status-neutral/30"
+                              : "bg-status-success-muted text-status-success-foreground border-status-success/30"
                           }
                         >
                           {item.status}

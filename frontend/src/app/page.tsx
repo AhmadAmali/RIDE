@@ -18,15 +18,15 @@ function StatusBadge({ status }: { status: Document["status"] }) {
   > = {
     uploaded: {
       label: "Uploaded",
-      className: "bg-slate-100 text-slate-700 border-slate-200",
+      className: "bg-status-neutral-muted text-status-neutral-foreground border-status-neutral/30",
     },
     parsed: {
       label: "Parsed",
-      className: "bg-blue-100 text-blue-700 border-blue-200",
+      className: "bg-status-info-muted text-status-info-foreground border-status-info/30",
     },
     extracted: {
       label: "Ready for Review",
-      className: "bg-emerald-100 text-emerald-700 border-emerald-200",
+      className: "bg-status-success-muted text-status-success-foreground border-status-success/30",
     },
   };
 
@@ -64,7 +64,7 @@ export default async function DocumentListPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card">
+      <header className="header-gradient">
         <div className="mx-auto max-w-5xl px-6 py-8">
           <div className="flex items-center justify-between">
             <div>
@@ -113,11 +113,12 @@ export default async function DocumentListPage() {
         <div className="grid gap-4">
           {documents.map((doc) => {
             const isReviewable = doc.status === "extracted";
+            const hasApprovals = (doc.approved_count ?? 0) > 0;
 
             return (
               <Card
                 key={doc.id}
-                className={`transition-all ${
+                className={`transition-all card-glow ${
                   isReviewable
                     ? "hover:shadow-md hover:border-primary/20"
                     : "opacity-70"
@@ -138,24 +139,25 @@ export default async function DocumentListPage() {
                 </CardHeader>
                 {isReviewable && (
                   <CardContent>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex gap-3">
                       <Link
                         href={`/review/${doc.id}`}
-                        className="text-sm text-primary font-medium hover:text-primary/80 transition-colors"
+                        className="inline-flex items-center gap-2 rounded-md border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-md hover:shadow-primary/20"
                       >
-                        Legal Review &rarr;
+                        Legal Review
                       </Link>
-                      <Link
-                        href={`/engineering/${doc.id}`}
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 hover:text-teal-600 transition-colors"
-                      >
-                        <Badge
-                          variant="outline"
-                          className="bg-teal-50 text-teal-700 border-teal-200 text-xs"
+                      {hasApprovals ? (
+                        <Link
+                          href={`/engineering/${doc.id}`}
+                          className="inline-flex items-center gap-2 rounded-md border border-status-teal/30 bg-status-teal-muted px-4 py-2 text-sm font-medium text-status-teal-foreground transition-all hover:bg-status-teal hover:text-primary-foreground hover:shadow-md hover:shadow-status-teal/20"
                         >
                           Engineering Review
-                        </Badge>
-                      </Link>
+                        </Link>
+                      ) : (
+                        <span className="inline-flex items-center gap-2 rounded-md border border-status-neutral/20 bg-status-neutral-muted px-4 py-2 text-sm font-medium text-status-neutral-foreground cursor-not-allowed">
+                          Engineering Review
+                        </span>
+                      )}
                     </div>
                   </CardContent>
                 )}
