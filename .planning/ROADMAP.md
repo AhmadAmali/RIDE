@@ -77,11 +77,11 @@ Plans:
   3. The final impact analysis view shows a systems-x-obligations matrix where confirmed mappings (including overrides) are reflected — not just the AI's initial suggestions
   4. Architecture diagrams exist showing the event-driven pipeline design and the two human-in-the-loop gates
   5. One complete regulatory document flows through the full pipeline — upload to impact matrix — without errors, producing a result suitable for the 2-3 minute demo video
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: Engineering review gate API and UI with RAG evidence display
-- [ ] 04-02: Impact analysis matrix view, architecture diagrams, and demo validation
+- [ ] 04-01-PLAN.md — Engineering review gate API (schema migration, PATCH endpoint with atomic audit logging) and frontend split-panel UI with RAG evidence display
+- [ ] 04-02-PLAN.md — Impact analysis matrix view, architecture diagrams, document list navigation enhancements, and end-to-end demo validation
 
 ## Progress
 
