@@ -20,17 +20,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Legal Review Gate
 
-- [ ] **LEGAL-01**: Legal/compliance reviewer can approve or reject each extracted obligation with source quotes displayed
-- [ ] **LEGAL-02**: Every approve/reject action is logged to an immutable audit trail
+- [x] **LEGAL-01**: Legal/compliance reviewer can approve or reject each extracted obligation with source quotes displayed
+- [x] **LEGAL-02**: Every approve/reject action is logged to an immutable audit trail
 
 ### Action Item Generation
 
-- [ ] **ACTION-01**: Approved obligations are transformed into structured business action items
+- [x] **ACTION-01**: Approved obligations are transformed into structured business action items
 
 ### RAG System Mapping
 
-- [ ] **RAG-01**: System suggests affected internal systems using RAG against mock Wealthsimple service documentation
-- [ ] **RAG-02**: Mock service corpus includes realistic services (KYC, Trading Engine, Tax Reporting, etc.)
+- [x] **RAG-01**: System suggests affected internal systems using RAG against mock Wealthsimple service documentation
+- [x] **RAG-02**: Mock service corpus includes realistic services (KYC, Trading Engine, Tax Reporting, etc.)
 
 ### Engineering Review Gate
 
@@ -100,11 +100,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EXTRACT-01 | Phase 2 | Complete (02-02) |
 | EXTRACT-02 | Phase 2 | Complete (02-02) |
 | EXTRACT-03 | Phase 2 | Complete (02-02) |
-| LEGAL-01 | Phase 3 | Pending |
-| LEGAL-02 | Phase 3 | Pending |
-| ACTION-01 | Phase 3 | Pending |
-| RAG-01 | Phase 3 | Pending |
-| RAG-02 | Phase 3 | Pending |
+| LEGAL-01 | Phase 3 | Complete |
+| LEGAL-02 | Phase 3 | Complete |
+| ACTION-01 | Phase 3 | Complete |
+| RAG-01 | Phase 3 | Complete |
+| RAG-02 | Phase 3 | Complete |
 | ENG-01 | Phase 4 | Pending |
 | ENG-02 | Phase 4 | Pending |
 | IMPACT-01 | Phase 4 | Pending |

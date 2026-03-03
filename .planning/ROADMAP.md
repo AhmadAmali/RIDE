@@ -92,5 +92,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-02 |
 | 2. Ingestion and Extraction | 2/2 | Complete | 2026-03-03 |
-| 3. Legal Gate, Action Items, and RAG Corpus | 0/2 | Not started | - |
+| 3. Legal Gate, Action Items, and RAG Corpus | 1/2 | In Progress|  |
 | 4. Engineering Gate, Impact Matrix, and Demo | 0/2 | Not started | - |
