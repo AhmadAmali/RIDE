@@ -1,6 +1,10 @@
 import { Document, Obligation } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Server-side (SSR) uses Docker internal hostname; browser uses localhost
+const API_URL =
+  typeof window !== "undefined"
+    ? "http://localhost:8000"
+    : process.env.NEXT_PUBLIC_API_URL || "http://backend:8000";
 
 export async function fetchDocuments(): Promise<Document[]> {
   const res = await fetch(`${API_URL}/api/documents`, {
@@ -54,6 +58,25 @@ export async function reviewObligation(
   }
   if (!res.ok) {
     throw new Error(`Review failed: ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function uploadDocument(file: File): Promise<Document> {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch(`${API_URL}/api/documents/upload`, {
+    method: "POST",
+    body: formData,
+  });
+  if (res.status === 413) {
+    throw new Error("File too large. Maximum size is 50 MB.");
+  }
+  if (res.status === 422) {
+    throw new Error("Invalid file. Only PDF files are accepted.");
+  }
+  if (!res.ok) {
+    throw new Error(`Upload failed: ${res.status}`);
   }
   return res.json();
 }

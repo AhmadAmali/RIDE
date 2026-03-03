@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Document } from "@/lib/types";
+import { UploadDropzone } from "@/components/UploadDropzone";
 
 function StatusBadge({ status }: { status: Document["status"] }) {
   const variants: Record<
@@ -95,18 +96,9 @@ export default async function DocumentListPage() {
           </Card>
         )}
 
-        {!error && documents.length === 0 && (
-          <Card>
-            <CardContent className="py-12 text-center">
-              <p className="text-muted-foreground">
-                No documents uploaded yet.
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Upload a PDF via the API to get started.
-              </p>
-            </CardContent>
-          </Card>
-        )}
+        <div className="mb-8">
+          <UploadDropzone />
+        </div>
 
         <div className="grid gap-4">
           {documents.map((doc) => {
