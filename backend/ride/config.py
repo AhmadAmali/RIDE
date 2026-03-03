@@ -25,6 +25,12 @@ class Settings(BaseSettings):
     anthropic_api_key: str = ""
     claude_model: str = "claude-sonnet-4-5"
 
+    # Qdrant
+    qdrant_url: str = "http://localhost:6333"
+
+    # Corpus (data/ directory mounted at /data in Docker)
+    corpus_dir: str = "/data/corpus"
+
 
 @lru_cache
 def get_settings() -> Settings:
