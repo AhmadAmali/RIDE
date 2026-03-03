@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-03T00:20:01.422Z"
+last_updated: "2026-03-03T04:36:00Z"
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 7
-  completed_plans: 5
+  completed_plans: 6
 ---
 
 # Project State
@@ -18,23 +18,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-02)
 
 **Core value:** Turn any financial regulatory document into approved, system-mapped business action items through a transparent AI pipeline with two human-in-the-loop gates — so compliance never becomes a black box.
-**Current focus:** Phase 3 — Legal Gate, Action Items, and RAG Corpus
+**Current focus:** Phase 4 — Engineering Gate, Impact Matrix, and Demo
 
 ## Current Position
 
-Phase: 3 of 4 (Legal Gate, Action Items, and RAG Corpus)
-Plan: 1 of 3 in current phase (plan 03-01 complete)
-Status: Plan 03-01 complete — legal review API, ActionItemWorker, RagMapperWorker, and Qdrant corpus indexer shipped
-Last activity: 2026-03-03 — Plan 03-01 all 3 tasks complete; PATCH /api/obligations/{id}/review live with atomic audit logging; ActionItemWorker and RagMapperWorker wired end-to-end
+Phase: 4 of 4 (Engineering Gate, Impact Matrix, and Demo)
+Plan: 0 of 2 in current phase (Phase 3 complete)
+Status: Phase 3 complete — legal review backend + frontend fully shipped; ready for Phase 4
+Last activity: 2026-03-03 — Plan 03-02 all 3 tasks complete; Next.js frontend with Wealthsimple-inspired design, document list page, and legal review split-panel UI
 
-Progress: [██████░░░░] 62%
+Progress: [████████░░] 86%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 3.5 min
-- Total execution time: 0.1 hours
+- Total plans completed: 6
+- Average duration: 5.3 min
+- Total execution time: 0.5 hours
 
 **By Phase:**
 
@@ -42,10 +42,10 @@ Progress: [██████░░░░] 62%
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 7 min | 3.5 min |
 | 02-ingestion-and-extraction | 2 | 11 min | 5.5 min |
-| 03-legal-gate-action-items-and-rag-corpus | 1 | 6 min | 6 min |
+| 03-legal-gate-action-items-and-rag-corpus | 2 | 12 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-02 (10 min, includes human-verify), 02-01 (6 min), 02-02 (5 min), 03-01 (6 min)
+- Last 5 plans: 01-02 (10 min, includes human-verify), 02-01 (6 min), 02-02 (5 min), 03-01 (6 min), 03-02 (6 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -81,6 +81,10 @@ Recent decisions affecting current work:
 - [03-01]: RagMapperWorker receives AsyncQdrantClient via constructor injection from lifespan — avoids multiple client instances per Qdrant connection pool
 - [03-01]: corpus_dir added to Settings with default /data/corpus; ./data:/data Docker volume mount added to backend service
 - [03-01]: fastembed BAAI/bge-small-en-v1.5 model via qdrant-client[fastembed] — no separate embedding service; cached in Docker layer after first use
+- [03-02]: SSR/browser dual API URL via typeof window check — SSR fetches through Docker internal hostname (http://backend:8000), browser through localhost (http://localhost:8000)
+- [03-02]: UploadDropzone added with drag-and-drop + click-to-browse — enables document upload from frontend without curl
+- [03-02]: Optimistic UI updates on obligation review — card status updates immediately via callback, no full page reload
+- [03-02]: Wealthsimple-inspired design tokens with deep teal/navy primary (HSL 200 80% 15%) — professional fintech aesthetic per user decision
 
 ### Pending Todos
 
@@ -96,5 +100,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: Completed 03-01-PLAN.md — legal review API, ActionItemWorker, RagMapperWorker, corpus indexer, 6 service docs, full lifespan wiring
+Stopped at: Completed 03-02-PLAN.md — Next.js frontend with Wealthsimple design, document list page with upload dropzone, legal review split-panel UI with obligation cards
 Resume file: None
