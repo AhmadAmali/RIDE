@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-03T04:36:00Z"
+status: in-progress
+last_updated: "2026-03-03T06:14:00Z"
 progress:
   total_phases: 4
   completed_phases: 3
-  total_plans: 7
-  completed_plans: 6
+  total_plans: 8
+  completed_plans: 7
 ---
 
 # Project State
@@ -23,18 +23,18 @@ See: .planning/PROJECT.md (updated 2026-03-02)
 ## Current Position
 
 Phase: 4 of 4 (Engineering Gate, Impact Matrix, and Demo)
-Plan: 0 of 2 in current phase (Phase 3 complete)
-Status: Phase 3 complete — legal review backend + frontend fully shipped; ready for Phase 4
-Last activity: 2026-03-03 — Plan 03-02 all 3 tasks complete; Next.js frontend with Wealthsimple-inspired design, document list page, and legal review split-panel UI
+Plan: 1 of 2 in current phase
+Status: Plan 04-01 complete — engineering review gate API + frontend with RAG evidence display
+Last activity: 2026-03-03 — Plan 04-01 all 2 tasks complete; engineering review API with confirm/correct/reassign and split-panel UI
 
-Progress: [████████░░] 86%
+Progress: [█████████░] 93%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 5.3 min
-- Total execution time: 0.5 hours
+- Total plans completed: 7
+- Average duration: 5.0 min
+- Total execution time: 0.6 hours
 
 **By Phase:**
 
@@ -43,10 +43,11 @@ Progress: [████████░░] 86%
 | 01-foundation | 2 | 7 min | 3.5 min |
 | 02-ingestion-and-extraction | 2 | 11 min | 5.5 min |
 | 03-legal-gate-action-items-and-rag-corpus | 2 | 12 min | 6 min |
+| 04-engineering-gate-impact-matrix-and-demo | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (10 min, includes human-verify), 02-01 (6 min), 02-02 (5 min), 03-01 (6 min), 03-02 (6 min)
-- Trend: stable
+- Last 5 plans: 02-01 (6 min), 02-02 (5 min), 03-01 (6 min), 03-02 (6 min), 04-01 (4 min)
+- Trend: stable-to-improving
 
 *Updated after each plan completion*
 
@@ -85,6 +86,10 @@ Recent decisions affecting current work:
 - [03-02]: UploadDropzone added with drag-and-drop + click-to-browse — enables document upload from frontend without curl
 - [03-02]: Optimistic UI updates on obligation review — card status updates immediately via callback, no full page reload
 - [03-02]: Wealthsimple-inspired design tokens with deep teal/navy primary (HSL 200 80% 15%) — professional fintech aesthetic per user decision
+- [04-01]: Inline correction form (select + textarea) rather than modal dialog — maintains card-level context and reduces UI complexity
+- [04-01]: Action items displayed on left panel as context, system mappings on right for review — mirrors legal review split-panel pattern
+- [04-01]: System options hardcoded as 6 known services — sufficient for prototype; production would fetch from registry
+- [04-01]: 409 Conflict on re-review prevents double-confirmation — same pattern as obligation review gate
 
 ### Pending Todos
 
@@ -100,5 +105,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-03
-Stopped at: Completed 03-02-PLAN.md — Next.js frontend with Wealthsimple design, document list page with upload dropzone, legal review split-panel UI with obligation cards
+Stopped at: Completed 04-01-PLAN.md — Engineering review gate API with confirm/correct/reassign, atomic audit logging, RAG evidence persistence, and split-panel frontend
 Resume file: None

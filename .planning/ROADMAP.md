@@ -80,7 +80,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Engineering review gate API (schema migration, PATCH endpoint with atomic audit logging) and frontend split-panel UI with RAG evidence display
+- [x] 04-01-PLAN.md — Engineering review gate API (schema migration, PATCH endpoint with atomic audit logging) and frontend split-panel UI with RAG evidence display
 - [ ] 04-02-PLAN.md — Impact analysis matrix view, architecture diagrams, document list navigation enhancements, and end-to-end demo validation
 
 ## Progress
@@ -93,4 +93,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 2/2 | Complete   | 2026-03-02 |
 | 2. Ingestion and Extraction | 2/2 | Complete | 2026-03-03 |
 | 3. Legal Gate, Action Items, and RAG Corpus | 2/2 | Complete | 2026-03-03 |
-| 4. Engineering Gate, Impact Matrix, and Demo | 0/2 | Not started | - |
+| 4. Engineering Gate, Impact Matrix, and Demo | 1/2 | In progress | - |

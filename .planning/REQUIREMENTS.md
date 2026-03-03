@@ -34,8 +34,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Engineering Review Gate
 
-- [ ] **ENG-01**: Engineer can confirm, correct, or reassign AI-suggested system mappings
-- [ ] **ENG-02**: Engineer overrides are logged with reason to audit trail
+- [x] **ENG-01**: Engineer can confirm, correct, or reassign AI-suggested system mappings
+- [x] **ENG-02**: Engineer overrides are logged with reason to audit trail
 
 ### Impact Analysis
 
@@ -105,8 +105,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ACTION-01 | Phase 3 | Complete |
 | RAG-01 | Phase 3 | Complete |
 | RAG-02 | Phase 3 | Complete |
-| ENG-01 | Phase 4 | Pending |
-| ENG-02 | Phase 4 | Pending |
+| ENG-01 | Phase 4 | Complete (04-01) |
+| ENG-02 | Phase 4 | Complete (04-01) |
 | IMPACT-01 | Phase 4 | Pending |
 | ARCH-01 | Phase 4 | Pending |
 | ARCH-02 | Phase 4 | Pending |
@@ -118,4 +118,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-02*
-*Last updated: 2026-03-03 after 02-02 completion — EXTRACT-01, EXTRACT-02, EXTRACT-03 marked complete*
+*Last updated: 2026-03-03 after 04-01 completion — ENG-01, ENG-02 marked complete*
