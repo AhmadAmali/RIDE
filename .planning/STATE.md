@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-02T23:24:17.276Z"
+status: active
+last_updated: "2026-03-03T00:14:00.000Z"
 progress:
-  total_phases: 1
+  total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 8
+  completed_plans: 3
 ---
 
 # Project State
@@ -18,14 +18,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-02)
 
 **Core value:** Turn any financial regulatory document into approved, system-mapped business action items through a transparent AI pipeline with two human-in-the-loop gates — so compliance never becomes a black box.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 2 — Ingestion and Extraction
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation)
-Plan: 2 of 2 in current phase
-Status: Phase 1 complete — all plans executed and verified
-Last activity: 2026-03-02 — Plan 01-02 all 3 tasks complete; Task 3 human-verify checkpoint approved (all 8 steps passed)
+Phase: 2 of 4 (Ingestion and Extraction)
+Plan: 1 of 3 in current phase
+Status: Plan 02-01 complete — upload endpoint and parse worker shipped
+Last activity: 2026-03-03 — Plan 02-01 all 2 tasks complete; upload endpoint and ParseWorker wired into lifespan
 
 Progress: [████░░░░░░] 40%
 
@@ -41,9 +41,10 @@ Progress: [████░░░░░░] 40%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 2 | 7 min | 3.5 min |
+| 02-ingestion-and-extraction | 1 | 6 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-02 (10 min, includes human-verify)
+- Last 5 plans: 01-01 (4 min), 01-02 (10 min, includes human-verify), 02-01 (6 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -68,6 +69,10 @@ Recent decisions affecting current work:
 - [01-02]: AuditLog uses metadata_ attribute with mapped_column("metadata", JSONB) to avoid Python reserved word conflict
 - [01-02]: Alembic env.py uses sys.path.insert for portability inside Docker container
 - [01-02]: Kafka image switched from bitnami/kafka to apache/kafka:3.9.2 — bitnami removed from Docker Hub
+- [02-01]: ParseWorker owns its own _emit_producer (not app.state.kafka_producer) — workers must be lifecycle-independent from FastAPI
+- [02-01]: asyncio.to_thread wraps pymupdf4llm.to_markdown — synchronous CPU-bound call; blocking event loop would stall all in-flight HTTP requests
+- [02-01]: File size guard counts actual bytes written, not Content-Length header — header is untrustworthy; streaming check is authoritative
+- [02-01]: uploads_data named Docker volume (not bind mount) — ensures API and parse worker share identical filesystem; persists across restarts
 
 ### Pending Todos
 
@@ -82,6 +87,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-02
-Stopped at: Completed 01-02-PLAN.md — Phase 1 Foundation fully complete
+Last session: 2026-03-03
+Stopped at: Completed 02-01-PLAN.md — upload endpoint, ParseWorker, and lifespan wiring complete
 Resume file: None

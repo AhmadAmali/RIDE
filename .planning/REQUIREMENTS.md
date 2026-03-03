@@ -9,8 +9,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Document Ingestion
 
-- [ ] **INGEST-01**: User can upload a regulatory PDF document
-- [ ] **INGEST-02**: System extracts structure-preserving Markdown from PDF (tables, sections, headings intact)
+- [x] **INGEST-01**: User can upload a regulatory PDF document
+- [x] **INGEST-02**: System extracts structure-preserving Markdown from PDF (tables, sections, headings intact)
 
 ### AI Obligation Extraction
 
@@ -95,8 +95,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INGEST-01 | Phase 2 | Pending |
-| INGEST-02 | Phase 2 | Pending |
+| INGEST-01 | Phase 2 | Complete (02-01) |
+| INGEST-02 | Phase 2 | Complete (02-01) |
 | EXTRACT-01 | Phase 2 | Pending |
 | EXTRACT-02 | Phase 2 | Pending |
 | EXTRACT-03 | Phase 2 | Pending |
@@ -118,4 +118,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-02*
-*Last updated: 2026-03-02 after roadmap creation — all 15 requirements mapped*
+*Last updated: 2026-03-03 after 02-01 completion — INGEST-01, INGEST-02 marked complete*
